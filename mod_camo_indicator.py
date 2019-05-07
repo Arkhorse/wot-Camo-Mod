@@ -1,6 +1,7 @@
 ﻿# -*- coding: utf-8-sig -*-
 
 # connect the game engine libraries available in the game client built-in python
+import logging
 import datetime
 import math
 import Math
@@ -15,6 +16,8 @@ from gui.app_loader.settings import APP_NAME_SPACE
 
 # noinspection PyUnresolvedReferences
 from gui.mods.mod_mods_gui import g_gui, inject
+
+logging.info('Starting Camo Indicator')
 
 COLORS = ['#FE0E00', '#FE7903', '#F8F400', '#60FF00', '#02C9B3', '#D042F3']
 MENU = ['UI_color_blue', 'UI_color_brown', 'UI_color_chocolate', 'UI_color_cornflower_blue', 'UI_color_cream', 'UI_color_cyan', 'UI_color_emerald', 'UI_color_gold', 'UI_color_green', 'UI_color_green_yellow', 'UI_color_hot_pink', 'UI_color_lime',
@@ -78,16 +81,24 @@ class Config(object):
             'column1'        : [
                 {
                     'type'   : 'CheckBox',
-                    'text'   : self.i18n['UI_setting_test_text'],
-                    'value'  : self.data['Camo Indicator'],
+                    'text'   : self.i18n['UI_setting_show_text'],
+                    'value'  : self.data['testOption'],
                     'tooltip': self.i18n['UI_setting_test_tooltip'],
                     'varName': 'test'
                 }]
             }
-            
+    def generator_menu(self):
+        res = []
+        for i in xrange(0, len(COLOR)):
+            res.append({
+                'label': '<font color="%s">%s</font>' % (COLOR[i], self.i18n[MENU[i]])
+            })
+        return res
+        
     def apply(self, settings):
         self.data = g_gui.update_data(self.ids, settings, 'spoter')
         g_gui.update(self.ids, self.template)
+        
 # Mod Start
 def hello(self):
     parent(self)
@@ -95,3 +106,7 @@ def hello(self):
     Account.onBecomePlayer = parent
 parent = Account.onBecomePlayer
 Account.onBecomePlayer = hello
+
+def textGenerator(self, event):
+    text
+    return config.i18n[text].format(**self.format_str), COLOR[config.data[color]]
