@@ -11,7 +11,7 @@ from Account import Account
 # noinspection PyUnresolvedReferences
 from gui.mods.mod_mods_gui import g_gui, inject
 
-_logger = logging.getLogger(MOD.NAME)
+_logger = logging.getLogger(camoIndicator)
 
 g_indicatorManager = None
 
