@@ -6,4 +6,4 @@
 *.wotreplay
 desktop.ini
 *.dll
-*pyc
+*.pyc
