@@ -1,13 +1,31 @@
 ﻿# -*- coding: utf-8-sig -*-
 
 # connect the game engine libraries available in the game client built-in python
+import logging
 import BigWorld
 import Vehicle
+from debug_utils import LOG_CURRENT_EXCEPTION
 from gui import SystemMessages
 from Account import Account
 
 # noinspection PyUnresolvedReferences
 from gui.mods.mod_mods_gui import g_gui, inject
+
+_logger = logging.getLogger(MOD.NAME)
+
+g_indicatorManager = None
+
+def getLogLevel(name):
+    logLevel = {
+        'CRITICAL':     logging.CRITICAL,
+        'ERROR':        logging.ERROR,
+        'WARNING':      logging.WARNING,
+        'INFO':         logging.INFO,
+        'DEBUG':        logging.DEBUG,
+        'NOTSET':       logging.NOTSET
+    }
+    return logLevel.get(name, logging.INFO)
+
 
 class Config(object):
     def __init__(self):
@@ -51,7 +69,11 @@ class Config(object):
 
 def hello(self):
     parent(self)
-    SystemMessages.pushMessage('Hello WoT!', type=SystemMessages.SM_TYPE.Warning)
+    try:
+        SystemMessages.pushMessage('Hello WoT!', type=SystemMessages.SM_TYPE.Warning)
+    except:
+        LOG_CURRENT_EXCEPTION()
+        _logger.warning('fail to talk')
     Account.onBecomePlayer = parent
 parent = Account.onBecomePlayer
 Account.onBecomePlayer = hello
