@@ -91,7 +91,7 @@ class Config(object):
 # Mod Start
 def hello(self):
     parent(self)
-    SystemMessages.pushMessage('Camo Indicator Loaded[{datetime}]', type=SystemMessages.SM_TYPE.Warning)
+    SystemMessages.pushMessage('Camo Indicator Loaded', type=SystemMessages.SM_TYPE.Warning)
     Account.onBecomePlayer = parent
 parent = Account.onBecomePlayer
 Account.onBecomePlayer = hello
