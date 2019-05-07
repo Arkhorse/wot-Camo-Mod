@@ -2,7 +2,6 @@
 
 # connect the game engine libraries available in the game client built-in python
 import datetime
-import logging
 import math
 import Math
 import BigWorld
@@ -20,20 +19,6 @@ from gui.mods.mod_mods_gui import g_gui, inject
 COLORS = ['#FE0E00', '#FE7903', '#F8F400', '#60FF00', '#02C9B3', '#D042F3']
 MENU = ['UI_color_blue', 'UI_color_brown', 'UI_color_chocolate', 'UI_color_cornflower_blue', 'UI_color_cream', 'UI_color_cyan', 'UI_color_emerald', 'UI_color_gold', 'UI_color_green', 'UI_color_green_yellow', 'UI_color_hot_pink', 'UI_color_lime',
         'UI_color_orange', 'UI_color_pink', 'UI_color_purple', 'UI_color_red', 'UI_color_wg_blur', 'UI_color_wg_enemy', 'UI_color_wg_friend', 'UI_color_wg_squad', 'UI_color_yellow', 'UI_color_nice_red', 'UI_color_very_bad', 'UI_color_bad', 'UI_color_normal', 'UI_color_good', 'UI_color_very_good', 'UI_color_unique']
-# Logging system
-
-_logger = logging.getLogger(MOD.NAME)
-
-def getLogLevel(name):
-    logLevel = {
-        'CRITICAL':     logging.CRITICAL,
-        'ERROR':        logging.ERROR,
-        'WARNING':      logging.WARNING,
-        'INFO':         logging.INFO,
-        'DEBUG':        logging.DEBUG,
-        'NOTSET':       logging.NOTSET
-    }
-    return logLevel.get(name, logging.INFO)
 
 # In Garage Settings
 class Config(object):
@@ -106,11 +91,7 @@ class Config(object):
 # Mod Start
 def hello(self):
     parent(self)
-    try:
-        SystemMessages.pushMessage('Camo Indicator Loaded[{datetime}]', type=SystemMessages.SM_TYPE.Warning)
-    except:
-        LOG_CURRENT_EXCEPTION()
-        _logger.warning('fail to talk')
+    SystemMessages.pushMessage('Camo Indicator Loaded[{datetime}]', type=SystemMessages.SM_TYPE.Warning)
     Account.onBecomePlayer = parent
 parent = Account.onBecomePlayer
 Account.onBecomePlayer = hello
