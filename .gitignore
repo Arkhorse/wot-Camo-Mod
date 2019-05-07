@@ -1,0 +1,9 @@
+*.exe
+*.lnk
+*.zip
+*.bat
+*.back
+*.wotreplay
+desktop.ini
+*.dll
+*pyc
