@@ -2,6 +2,8 @@
 
 # connect the game engine libraries available in the game client built-in python
 import logging
+import math
+import Math
 import BigWorld
 import Vehicle
 from debug_utils import LOG_CURRENT_EXCEPTION
@@ -10,7 +12,7 @@ from Account import Account
 
 # noinspection PyUnresolvedReferences
 from gui.mods.mod_mods_gui import g_gui, inject
-
+# Logging system
 _logger = logging.getLogger(camoIndicator)
 
 g_indicatorManager = None
@@ -26,7 +28,7 @@ def getLogLevel(name):
     }
     return logLevel.get(name, logging.INFO)
 
-
+# In Garage Settings
 class Config(object):
     def __init__(self):
         self.ids = 'Test Mod'
@@ -66,7 +68,7 @@ class Config(object):
     def apply(self, settings):
         self.data = g_gui.update_data(self.ids, settings, 'spoter')
         g_gui.update(self.ids, self.template)
-
+# Mod Start
 def hello(self):
     parent(self)
     try:
