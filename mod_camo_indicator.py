@@ -7,6 +7,7 @@ import math
 import Math
 import BigWorld
 import Vehicle
+from mod_constants_camo import MOD, CONFIG_FILES
 from debug_utils import LOG_CURRENT_EXCEPTION
 from gui import SystemMessages
 from Account import Account
@@ -17,8 +18,19 @@ from gui.app_loader.settings import APP_NAME_SPACE
 # noinspection PyUnresolvedReferences
 from gui.mods.mod_mods_gui import g_gui, inject
 
-logging.info('Starting Camo Indicator')
+_logger = logging.getLogger(MOD.NAME)
 
+def getLogLevel(name):
+    logLevel = {
+        'CRITICAL':     logging.CRITICAL,
+        'ERROR':        logging.ERROR,
+        'WARNING':      logging.WARNING,
+        'INFO':         logging.INFO,
+        'DEBUG':        logging.DEBUG,
+        'NOTSET':       logging.NOTSET
+    }
+    return logLevel.get(name, logging.INFO)
+_logger.info('Staring Camo Indicator')
 COLORS = ['#FE0E00', '#FE7903', '#F8F400', '#60FF00', '#02C9B3', '#D042F3']
 MENU = ['UI_color_blue', 'UI_color_brown', 'UI_color_chocolate', 'UI_color_cornflower_blue', 'UI_color_cream', 'UI_color_cyan', 'UI_color_emerald', 'UI_color_gold', 'UI_color_green', 'UI_color_green_yellow', 'UI_color_hot_pink', 'UI_color_lime',
         'UI_color_orange', 'UI_color_pink', 'UI_color_purple', 'UI_color_red', 'UI_color_wg_blur', 'UI_color_wg_enemy', 'UI_color_wg_friend', 'UI_color_wg_squad', 'UI_color_yellow', 'UI_color_nice_red', 'UI_color_very_bad', 'UI_color_bad', 'UI_color_normal', 'UI_color_good', 'UI_color_very_good', 'UI_color_unique']
@@ -26,7 +38,7 @@ MENU = ['UI_color_blue', 'UI_color_brown', 'UI_color_chocolate', 'UI_color_cornf
 # In Garage Settings
 class Config(object):
     def __init__(self):
-        self.ids = 'Camo Indicator'
+        self.ids = 'camoIndicator'
         self.version = 'v0.01 (2019-05-06)'
         self.version_id = 001
         self.author = 'by the illusion'
@@ -69,10 +81,12 @@ class Config(object):
             'UI_color_very_good'                   : 'Very good rating',
             'UI_color_unique'                      : 'Unique rating'
             }
-        self.data, self.i18n = g_gui.register_data(self.ids, self.data, self.i18n, 'spoter')
+    try:
+        self.data, self.i18n = g_gui.register_data(self.ids, self.data, self.i18n, 'illusion')
         g_gui.register(self.ids, self.template, self.data, self.apply)
         print '[LOAD_MOD]:  [%s %s, %s]' % (self.ids, self.version, self.author)
-        
+    except:
+        _logger.error('CAMO settings failed pass 1')
     def template(self):
         return {
             'modDisplayName' : self.i18n['UI_description'],
@@ -96,17 +110,14 @@ class Config(object):
         return res
         
     def apply(self, settings):
-        self.data = g_gui.update_data(self.ids, settings, 'spoter')
+        self.data = g_gui.update_data(self.ids, settings, 'illusion')
         g_gui.update(self.ids, self.template)
         
 # Mod Start
-def hello(self):
+def modStart(self):
     parent(self)
     SystemMessages.pushMessage('Camo Indicator Loaded', type=SystemMessages.SM_TYPE.Warning)
     Account.onBecomePlayer = parent
 parent = Account.onBecomePlayer
-Account.onBecomePlayer = hello
+Account.onBecomePlayer = modStart
 
-def textGenerator(self, event):
-    text
-    return config.i18n[text].format(**self.format_str), COLOR[config.data[color]]
