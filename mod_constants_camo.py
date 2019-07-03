@@ -2,8 +2,8 @@
 import math
 
 from constants import ARENA_PERIOD
-from gui.battle_control.battle_constants import CROSSHAIR_VIEW_ID
-from skeletons.gui.app_loader import GuiGlobalSpaceID
+# from gui.battle_control.battle_constants import CROSSHAIR_VIEW_ID
+# from skeletons.gui.app_loader import GuiGlobalSpaceID
 
 class MOD:
     ID = '${mod_id}'
@@ -12,20 +12,11 @@ class MOD:
     VERSION = '${version}'
 
 CONFIG_FILES = [
-    '${resource_dir}/default.json',
     '${resource_dir}/config.json',
     '${config_file}'
 ]
 
 LOG_FILE = '${log_file}'
-
-CROSSHAIR_VIEW_SYMBOL = {
-    CROSSHAIR_VIEW_ID.UNDEFINED:    'UNDEFINED',
-    CROSSHAIR_VIEW_ID.ARCADE:       'ARCADE',
-    CROSSHAIR_VIEW_ID.SNIPER:       'SNIPER',
-    CROSSHAIR_VIEW_ID.STRATEGIC:    'STRATEGIC',
-    CROSSHAIR_VIEW_ID.POSTMORTEM:   'POSTMORTEM'
-}
 
 ARENA_PERIOD_SYMBOL = {
     ARENA_PERIOD.IDLE:          'IDLE',
