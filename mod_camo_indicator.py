@@ -84,11 +84,7 @@ class Camo(object):
         self.format_str = {
             'camo'         : ''
         }
-        
-    def textGenerator(self, event):
-        text = GENERATOR[event]
-        return config.i18n[text].format(**self.format_str)
-        
+               
     def post_message(self, events):
         try:
             _logger.info('message started')
