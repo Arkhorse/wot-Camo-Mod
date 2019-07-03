@@ -31,32 +31,3 @@ def getLogLevel(name):
     return logLevel.get(name, logging.INFO)
 
 # Mod Start
-
-def apply(self, settings):
-    self.data = g_gui.update_data(self.ids, settings, 'illusion')
-    g_gui.update(self.ids, self.template)
-        
-class Camo(object):
-    def __init__(self):
-        self.format_str = {}
-        self.format_recreate()
-    def format_recreate(self):
-        self.format_str = {
-            'camo'         : ''
-        }
-               
-    def post_message(self, events):
-        try:
-            _logger.info('message started')
-            g_sessionProvider = BigWorld.player().guiSessionProvider
-            self.format_recreate()
-            for data in events:
-                feedbackEvent = feedback_events.PlayerFeedbackEvent.fromDict(data)
-                eventID = feedbackEvent.getBattleEventType()
-                    if eventID in [BATTLE_EVENT_TYPE.VISIBILITY_EVENTS]:
-                        ()
-                    text = self.textGenerator(eventID)
-                    inject.message(text)
-        except:
-            _logger.critical('Message Failed')
-print '[LOAD_FINISHED]:  [Camo Indicator by The Illusion v0.01]'
