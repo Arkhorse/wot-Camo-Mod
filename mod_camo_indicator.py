@@ -1,7 +1,4 @@
-﻿# -*- coding: utf-8-sig -*-
-
-# connect the game engine libraries available in the game client built-in python
-import logging
+﻿import logging
 import BigWorld
 import BattleReplay
 from debug_utils import LOG_CURRENT_EXCEPTION
