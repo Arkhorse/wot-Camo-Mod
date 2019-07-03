@@ -11,7 +11,7 @@ from gui.app_loader.settings import APP_NAME_SPACE
 from gui.Scaleform.framework import ViewSettings, ViewTypes, ScopeTemplates
 from gui.Scaleform.framework.entities.View import View
 from gui.battle_control.battle_constants import CROSSHAIR_VIEW_ID
-# from items.utils import getInvisibility, getClientInvisibility
+from items.utils import getInvisibility, getClientInvisibility
 from BattleFeedbackCommon import BATTLE_EVENT_TYPE
 from gui.battle_control.controllers import feedback_events
 
