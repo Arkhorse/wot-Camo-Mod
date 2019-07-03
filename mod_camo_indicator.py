@@ -30,14 +30,11 @@ def getLogLevel(name):
     }
     return logLevel.get(name, logging.INFO)
 
-GENERATOR = {
-    BATTLE_EVENT_TYPE.VISIBILITY_EVENTS     : ['UI_message_VISIBILITY_EVENTS_text']
-}
 try:
     # noinspection PyUnresolvedReferences
     from gui.mods.mod_mods_gui import g_gui, inject
 except:
-    _logging.CRITICAL('Settings Failed')
+    _logging.CRITICAL('GUI dependency not found')
 # Ingame Config
 
 class Config(object):
