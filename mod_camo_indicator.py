@@ -30,46 +30,6 @@ def getLogLevel(name):
     }
     return logLevel.get(name, logging.INFO)
 
-try:
-    # noinspection PyUnresolvedReferences
-    from gui.mods.mod_mods_gui import g_gui, inject
-except:
-    _logging.CRITICAL('GUI dependency not found')
-# Ingame Config
-
-class Config(object):
-    def __init__(self):
-        self.ids = 'camoIndicator'
-        self.version = 'v0.01 (2019-05-07)'
-        self.version_id = 001
-        self.author = 'by Illusion'
-        self.data = {
-            'version'                : self.version_id,
-            'enabled'                : True,
-            'camo'                   : True
-        }
-        self.i18n = {
-            'version'                                   : self.version_id,
-            'UI_description'                            : 'Camo Indicator',
-            'UI_camo_text'                              : 'Show Camo values in battle'
-        }
-        self.data, self.i18n = g_gui.register_data(self.ids, self.data, self.i18n, 'Illusion')
-        g_gui.register(self.ids, self.template, self.data, self.apply)
-        print '[LOAD_MOD]:  [%s %s, %s]' % (self.ids, self.version, self.author)
-        config = Config()
-        
-    def template(self):
-        return {
-            'modDisplayName' : self.i18n['UI_description'],
-            'settingsVersion': self.version_id,
-            'enabled'        : self.data['enabled'],
-            'column1'        : [{
-                'type'   : 'CheckBox',
-                'text'   : self.i18n['UI_description'],
-                'value'  : self.data['camo'],
-                'tooltip': self.i18n['UI_camo_text'],
-                'varName': 'camo'
-                }]        
 # Mod Start
 
 def apply(self, settings):
